@@ -1,31 +1,45 @@
-import img2text_models.microsoft_beit as microsoft_beit
-import img2text_models.microsoft_resnet as microsoft_resnet
-import img2text_models.microsoft_swin as microsoft_swin
+# import img2text_models.microsoft_beit as microsoft_beit
+microsoft_beit = "https://api-inference.huggingface.co/models/microsoft/beit-base-patch16-224-pt22k-ft22k"
+# import img2text_models.microsoft_resnet as microsoft_resnet
+microsoft_resnet = "https://api-inference.huggingface.co/models/microsoft/resnet-50"
+# import img2text_models.microsoft_swin as microsoft_swin
+microsoft_swin = "https://api-inference.huggingface.co/models/microsoft/swin-base-patch4-window7-224-in22k"
 
-import img2text_models.google_vit as google_vit
 
-import img2text_models.facebook_convnext as facebook_convnext
-import img2text_models.facebook_regnet as facebook_regnet
+# import img2text_models.google_vit as google_vit
+google_vit = "https://api-inference.huggingface.co/models/google/vit-base-patch16-224"
 
-import img2text_models.nvidia_mit as nvidia_mit
+# import img2text_models.facebook_convnext as facebook_convnext
+facebook_convnext = "https://api-inference.huggingface.co/models/facebook/convnext-base-224"
+# import img2text_models.facebook_regnet as facebook_regnet
+facebook_regnet = "https://api-inference.huggingface.co/models/facebook/regnet-y-008"
+# import img2text_models.nvidia_mit as nvidia_mit
+nvidia_mit = "https://api-inference.huggingface.co/models/nvidia/mit-b0"
 
 import json
-
 import numpy as np
+import config
+import requests
+import time
+
+headers = {"Authorization": f"Bearer %s" %config.api_img2txt}
 
 models = [microsoft_beit, microsoft_resnet, microsoft_swin,
         google_vit,
         facebook_convnext, facebook_regnet,
         nvidia_mit]
 
+# models = [microsoft_beit]
+
 
 def main():
 
-    img = "insp_img/umbrella.jpg"
+    img = "insp_img/vase.jpg"
+
 
     responses = get_text_classification_responses(img)
 
-    print_text_classification_responses(responses)
+    # print_text_classification_responses(responses)
 
     print(get_best_classification(responses))
     
@@ -40,12 +54,25 @@ def print_text_classification_responses(responses):
 def get_text_classification_responses(img):
     responses=[]
     for model in models:
-        x = model.query(img)    
+        x = query(img, model)    
         # if error 503 than retry 
-
+        
         responses.append(x)
 
     return responses
+
+def query(filename, API_URL):
+    with open(filename, "rb") as f:
+        # data = {"inputs": f.read(), "options": {"wait_for_model": True}}
+        data = f.read()
+    response = requests.request("POST", API_URL, headers=headers, data=data)
+    # print(response)
+    if response.status_code == 503:
+        print("retry, sleep 20s")
+        time.sleep(20)
+        response = requests.request("POST", API_URL, headers=headers, data=data)
+    return json.loads(response.content.decode("utf-8"))
+
 
 def get_best_classification(responses):
     tokens = []
