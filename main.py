@@ -21,7 +21,7 @@ models = [microsoft_beit, microsoft_resnet, microsoft_swin,
 
 def main():
 
-    img = "insp_img/bonesaw.jpg"
+    img = "insp_img/umbrella.jpg"
 
     responses = get_text_classification_responses(img)
 
@@ -55,8 +55,16 @@ def get_best_classification(responses):
             # print("reponses x")
             # print(x)
             if x['score'] > 0.5:
-                tokens.append(x['label'].split(", "))
+                # print(x['label'].split(", "))
+                # use extend, not append 
+                # append method does not work always, 
+                # some labels are more than one word and 
+                # this would create the issue with appending 
+                # a list to the tokens list instead of every element 
+                tokens.extend(x['label'].split(", "))
+                # tokens.append(x['label'].split(", "))
 
+    # print(tokens)
     return np.unique(tokens)
 
 
