@@ -22,6 +22,9 @@ import config
 import requests
 import time
 
+from diffusers import StableDiffusionPipeline
+import torch
+
 headers = {"Authorization": f"Bearer %s" %config.api_img2txt}
 
 models = [microsoft_beit, microsoft_resnet, microsoft_swin,
@@ -34,14 +37,26 @@ models = [microsoft_beit, microsoft_resnet, microsoft_swin,
 
 def main():
 
-    img = "insp_img/sunflower.jpg"
+    # img = "insp_img/sunflower.jpg"
 
 
-    responses = get_text_classification_responses(img)
+    # responses = get_text_classification_responses(img)
 
-    # print_text_classification_responses(responses)
+    # # print_text_classification_responses(responses)
 
-    print(get_best_classification(responses))
+    # print(get_best_classification(responses))
+
+
+
+    model_id = "runwayml/stable-diffusion-v1-5"
+    # pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16)
+    pipe = StableDiffusionPipeline.from_pretrained(model_id)
+    # pipe = pipe.to("cpu")
+
+    prompt = "a design of a black oversized dress with gold elements"
+    image = pipe(prompt).images[0]  
+        
+    image.save("astronaut_rides_horse.png")
     
 
 
