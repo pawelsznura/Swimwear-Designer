@@ -26,3 +26,4 @@ for filename in glob.glob('insp_img/*.jpg'):
 
 print(predict_class_labels(image_list[2]))
 # print(image_list[0])
+
