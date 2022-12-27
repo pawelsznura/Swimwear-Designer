@@ -34,7 +34,7 @@ models = [microsoft_beit, microsoft_resnet, microsoft_swin,
 
 def main():
 
-    img = "insp_img/vase.jpg"
+    img = "insp_img/sunflower.jpg"
 
 
     responses = get_text_classification_responses(img)
@@ -53,11 +53,19 @@ def print_text_classification_responses(responses):
 
 def get_text_classification_responses(img):
     responses=[]
-    for model in models:
-        x = query(img, model)    
-        # if error 503 than retry 
-        
-        responses.append(x)
+    retry = True
+    while retry:
+        retry = False
+        for model in models:
+            content, status_code = query(img, model)    
+            # if status code 503 than retry 
+            if status_code == 503:
+                retry = True
+            else:
+                responses.append(content)
+        if retry:
+            print("models loading, wait 20s")
+            time.sleep(20)
 
     return responses
 
@@ -67,11 +75,11 @@ def query(filename, API_URL):
         data = f.read()
     response = requests.request("POST", API_URL, headers=headers, data=data)
     # print(response)
-    if response.status_code == 503:
-        print("retry, sleep 20s")
-        time.sleep(20)
-        response = requests.request("POST", API_URL, headers=headers, data=data)
-    return json.loads(response.content.decode("utf-8"))
+    # if response.status_code == 503:
+    #     print("retry, sleep 20s")
+    #     time.sleep(20)
+    #     response = requests.request("POST", API_URL, headers=headers, data=data)
+    return json.loads(response.content.decode("utf-8")), response.status_code
 
 
 def get_best_classification(responses):
