@@ -37,14 +37,19 @@ models = [microsoft_beit, microsoft_resnet, microsoft_swin,
 
 def main():
 
-    # img = "insp_img/sunflower.jpg"
+    img = "insp_img/sunflower.jpg"
 
 
-    # responses = get_text_classification_responses(img)
+    responses = get_text_classification_responses(img)
 
-    # # print_text_classification_responses(responses)
+    print_text_classification_responses(responses)
 
-    # print(get_best_classification(responses))
+    print(get_best_classification(responses))
+
+    # model prompt 
+    # a design of a *color* swimsuit with the shape of a *shape* shape inspired by *insp* 
+    # a design of a silver swimsuit inspired by sunflowers  
+
 
 
 
@@ -53,16 +58,16 @@ def main():
     pipe = StableDiffusionPipeline.from_pretrained(model_id)
     # pipe = pipe.to("cpu")
 
-    prompt = "a design of a black oversized dress with gold elements"
+    prompt = "a hyper realistic design of a green two-piece swimsuit inspired by bonesaw"
     image = pipe(prompt).images[0]  
         
-    image.save("astronaut_rides_horse.png")
+    image.save("sss.png")
     
 
 
 def print_text_classification_responses(responses):
     for model, response in zip(models, responses):
-        print(model.__name__)
+        print(model)
         print(json.dumps(response, indent=4))
 
 
