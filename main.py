@@ -11,8 +11,6 @@ from PIL import Image
 from transformers import ViTFeatureExtractor, AutoTokenizer, VisionEncoderDecoderModel
 
 
-
-
 # IMG 2 TXT
 
 # IMG Classifiers 
@@ -42,23 +40,36 @@ models = [microsoft_beit, microsoft_resnet, microsoft_swin,
         facebook_convnext, facebook_regnet,
         nvidia_mit]
 
+# IMG captioning 
+
 # vit-gpt2-coco-en
 # https://huggingface.co/ydshieh/vit-gpt2-coco-en
 
 import img2text_models.vit_gpt2_coco_en as vit_gpt2_coco_en
+
+# vit-gpt2-image-captioning
+# https://huggingface.co/nlpconnect/vit-gpt2-image-captioning
+
+import img2text_models.vit_gpt2_image_captioning as vit_gpt2_image_captioning
+
 
 
 
 
 def main():
 
-    img = "insp_img/apple.jpg"
+    img = "insp_img/mirror.jpg"
 
 
     
     text_despription  = vit_gpt2_coco_en.predict(img)
-
+    print("vit_gpt2_coco_en")
     print(text_despription)
+
+    text_despription  = vit_gpt2_image_captioning.predict(img)
+    print("vit_gpt2_image_captioning")
+    print(text_despription)
+    
 
 
     # responses = get_text_classification_responses(img)

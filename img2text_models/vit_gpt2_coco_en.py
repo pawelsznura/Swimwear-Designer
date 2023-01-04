@@ -7,6 +7,8 @@ from transformers import ViTFeatureExtractor, AutoTokenizer, VisionEncoderDecode
 # vit-gpt2-coco-en
 # https://huggingface.co/ydshieh/vit-gpt2-coco-en
 
+
+
 loc = "ydshieh/vit-gpt2-coco-en"
 
 feature_extractor = ViTFeatureExtractor.from_pretrained(loc)
