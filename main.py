@@ -1,10 +1,28 @@
+import json
+import numpy as np
+import config
+import requests
+import time
+
+from diffusers import StableDiffusionPipeline
+import torch
+
+from PIL import Image
+from transformers import ViTFeatureExtractor, AutoTokenizer, VisionEncoderDecoderModel
+
+
+
+
+# IMG 2 TXT
+
+# IMG Classifiers 
+
 # import img2text_models.microsoft_beit as microsoft_beit
 microsoft_beit = "https://api-inference.huggingface.co/models/microsoft/beit-base-patch16-224-pt22k-ft22k"
 # import img2text_models.microsoft_resnet as microsoft_resnet
 microsoft_resnet = "https://api-inference.huggingface.co/models/microsoft/resnet-50"
 # import img2text_models.microsoft_swin as microsoft_swin
 microsoft_swin = "https://api-inference.huggingface.co/models/microsoft/swin-base-patch4-window7-224-in22k"
-
 
 # import img2text_models.google_vit as google_vit
 google_vit = "https://api-inference.huggingface.co/models/google/vit-base-patch16-224"
@@ -16,15 +34,7 @@ facebook_regnet = "https://api-inference.huggingface.co/models/facebook/regnet-y
 # import img2text_models.nvidia_mit as nvidia_mit
 nvidia_mit = "https://api-inference.huggingface.co/models/nvidia/mit-b0"
 
-import json
-import numpy as np
-import config
-import requests
-import time
-
-from diffusers import StableDiffusionPipeline
-import torch
-
+#API key for models 
 headers = {"Authorization": f"Bearer %s" %config.api_img2txt}
 
 models = [microsoft_beit, microsoft_resnet, microsoft_swin,
@@ -32,19 +42,30 @@ models = [microsoft_beit, microsoft_resnet, microsoft_swin,
         facebook_convnext, facebook_regnet,
         nvidia_mit]
 
-# models = [microsoft_beit]
+# vit-gpt2-coco-en
+# https://huggingface.co/ydshieh/vit-gpt2-coco-en
+
+import img2text_models.vit_gpt2_coco_en as vit_gpt2_coco_en
+
+
 
 
 def main():
 
-    img = "insp_img/sunflower.jpg"
+    img = "insp_img/apple.jpg"
 
 
-    responses = get_text_classification_responses(img)
+    
+    text_despription  = vit_gpt2_coco_en.predict(img)
 
-    print_text_classification_responses(responses)
+    print(text_despription)
 
-    print(get_best_classification(responses))
+
+    # responses = get_text_classification_responses(img)
+
+    # print_text_classification_responses(responses)
+
+    # print(get_best_classification(responses))
 
     # model prompt 
     # a design of a *color* swimsuit with the shape of a *shape* shape inspired by *insp* 
@@ -58,7 +79,8 @@ def main():
     pipe = StableDiffusionPipeline.from_pretrained(model_id)
     # pipe = pipe.to("cpu")
 
-    prompt = "a hyper realistic design of a green two-piece swimsuit inspired by bonesaw"
+    prompt = "a hyper realistic design of a swimsuit inspired by " + text_despription[0]
+    print(prompt)
     image = pipe(prompt).images[0]  
         
     image.save("sss.png")
