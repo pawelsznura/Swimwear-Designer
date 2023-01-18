@@ -3,6 +3,8 @@ import numpy as np
 import config
 import requests
 import time
+import os
+
 
 from diffusers import StableDiffusionPipeline
 import torch
@@ -58,13 +60,13 @@ import img2text_models.vit_gpt2_image_captioning as vit_gpt2_image_captioning
 
 def main():
 
-    img = "insp_img/mirror.jpg"
+    img = "insp_img/vase.jpg"
 
 
     
-    text_despription  = vit_gpt2_coco_en.predict(img)
-    print("vit_gpt2_coco_en")
-    print(text_despription)
+    # text_despription  = vit_gpt2_coco_en.predict(img)
+    # print("vit_gpt2_coco_en")
+    # print(text_despription)
 
     text_despription  = vit_gpt2_image_captioning.predict(img)
     print("vit_gpt2_image_captioning")
@@ -90,12 +92,28 @@ def main():
     pipe = StableDiffusionPipeline.from_pretrained(model_id)
     # pipe = pipe.to("cpu")
 
-    prompt = "a hyper realistic design of a swimsuit inspired by " + text_despription[0]
+    prompt = "design two-piece swimwear inspired by " + text_despription[0]
     print(prompt)
     image = pipe(prompt).images[0]  
-        
-    image.save("sss.png")
     
+
+    new_img_path = get_new_image_file_name("created_images/")
+    image.save(new_img_path)
+    
+
+
+def get_new_image_file_name(dir_path):
+
+    # TODO what if directory is empty? 
+    last = os.listdir(dir_path)[len(os.listdir(dir_path))-1]
+    print("last element " + last)
+
+    img_number = last[0].split(".")[0]
+    # print("number = "+img_number)
+
+    new_number = int(img_number) + 1
+
+    return dir_path + str(new_number) + ".png"
 
 
 def print_text_classification_responses(responses):
