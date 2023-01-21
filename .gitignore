@@ -1,2 +1,4 @@
 config.py
 __pycache__/
+Stable Diffusion/sd_env
+Stable Diffusion/stable_diffusion_onnx
