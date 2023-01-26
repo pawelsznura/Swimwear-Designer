@@ -60,7 +60,7 @@ import img2text_models.vit_gpt2_image_captioning as vit_gpt2_image_captioning
 
 def main():
 
-    img = "insp_img/vase.jpg"
+    img = "insp_img/sunflower.jpg"
 
 
     
@@ -69,7 +69,8 @@ def main():
     # print(text_despription)
 
     text_despription  = vit_gpt2_image_captioning.predict(img)
-    print("vit_gpt2_image_captioning")
+    img_cap_model = "vit_gpt2_image_captioning"
+    print(img_cap_model)
     print(text_despription)
     
 
@@ -97,14 +98,40 @@ def main():
     image = pipe(prompt).images[0]  
     
 
-    new_img_path = get_new_image_file_name("created_images/")
+    # save input img, output img, prompt, model txt2img, model img2txt 
+
+
+    new_img_path = get_new_file_name("created_images/") + ".png"
     image.save(new_img_path)
+
+    new_txt_path = get_new_file_name("created_images_text/")
+
+    image_details = '''\
+input image: {input_image}
+output image: {output_image}
+prompt: {prompt}
+model img2txt: {model_img2txt}
+model txt2img: {model_txt2img}\
+        '''.format(input_image = img, output_image = new_img_path, 
+        prompt = prompt, model_img2txt = img_cap_model, model_txt2img = model_id )
+
+
+
+    with open(new_txt_path, "w") as text_file:
+        text_file.write(image_details)
+
+
+    
+
+    
     
 
 
-def get_new_image_file_name(dir_path):
+def get_new_file_name(dir_path):
+    
 
     # TODO what if directory is empty? 
+    # not sure if the list is in correct order (possible error 10.png cos 1 < 9)
     last = os.listdir(dir_path)[len(os.listdir(dir_path))-1]
     print("last element " + last)
 
@@ -113,7 +140,7 @@ def get_new_image_file_name(dir_path):
 
     new_number = int(img_number) + 1
 
-    return dir_path + str(new_number) + ".png"
+    return dir_path + str(new_number) 
 
 
 def print_text_classification_responses(responses):
