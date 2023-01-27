@@ -6,7 +6,7 @@ import time
 import os
 
 
-from diffusers import StableDiffusionPipeline
+from diffusers import StableDiffusionPipeline, DiffusionPipeline
 import torch
 
 from PIL import Image
@@ -88,10 +88,12 @@ def main():
 
 
 
-    model_id = "runwayml/stable-diffusion-v1-5"
-    # pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16)
-    pipe = StableDiffusionPipeline.from_pretrained(model_id)
-    # pipe = pipe.to("cpu")
+    # model_id = "runwayml/stable-diffusion-v1-5"
+    # # pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16)
+    # pipe = StableDiffusionPipeline.from_pretrained(model_id)
+
+    model_id = "stabilityai/stable-diffusion-2-1"
+    pipe = DiffusionPipeline.from_pretrained(model_id)
 
     prompt = "design two-piece swimwear inspired by " + text_despription[0]
     print(prompt)
@@ -104,7 +106,7 @@ def main():
     new_img_path = get_new_file_name("created_images/") + ".png"
     image.save(new_img_path)
 
-    new_txt_path = get_new_file_name("created_images_text/")
+    new_txt_path = get_new_file_name("created_images_text/") + ".txt"
 
     image_details = '''\
 input image: {input_image}
