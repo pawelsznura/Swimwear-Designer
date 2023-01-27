@@ -95,7 +95,7 @@ def main():
     model_id = "stabilityai/stable-diffusion-2-1"
     pipe = DiffusionPipeline.from_pretrained(model_id)
 
-    prompt = "design two-piece swimwear inspired by " + text_despription[0]
+    prompt = "a professional photograph of a design of a two-piece swimsuit inspired by " + text_despription[0]
     print(prompt)
     image = pipe(prompt).images[0]  
     
