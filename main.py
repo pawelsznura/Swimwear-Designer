@@ -12,6 +12,8 @@ import torch
 from PIL import Image
 from transformers import ViTFeatureExtractor, AutoTokenizer, VisionEncoderDecoderModel
 
+import Stable_Diffusion.txt2img_gpu as onnx
+
 
 # IMG 2 TXT
 
@@ -60,7 +62,7 @@ import img2text_models.vit_gpt2_image_captioning as vit_gpt2_image_captioning
 
 def main():
 
-    img = "insp_img/sunflower.jpg"
+    img = "insp_img/sword.jpg"
 
 
     
@@ -93,7 +95,10 @@ def main():
     # pipe = StableDiffusionPipeline.from_pretrained(model_id)
 
     model_id = "stabilityai/stable-diffusion-2-1"
-    pipe = DiffusionPipeline.from_pretrained(model_id)
+    model_id = "stable_diffusion_onnx"
+    
+    # pipe = DiffusionPipeline.from_pretrained(model_id)
+    pipe = onnx.onnxPipeline()
 
     prompt = "a professional photograph of a design of a two-piece swimsuit inspired by " + text_despription[0]
     print(prompt)
