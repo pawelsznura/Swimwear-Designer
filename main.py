@@ -61,11 +61,11 @@ import img2text_models.vit_gpt2_image_captioning as vit_gpt2_image_captioning
 
 
 def main():
+    # SOURCE IMAGE PATH
+    img = "insp_img/apple.jpg"
 
-    img = "insp_img/sword.jpg"
+    # IMAGE TO TEXT
 
-
-    
     # text_despription  = vit_gpt2_coco_en.predict(img)
     # print("vit_gpt2_coco_en")
     # print(text_despription)
@@ -74,39 +74,36 @@ def main():
     img_cap_model = "vit_gpt2_image_captioning"
     print(img_cap_model)
     print(text_despription)
-    
-
-
     # responses = get_text_classification_responses(img)
 
     # print_text_classification_responses(responses)
 
     # print(get_best_classification(responses))
 
-    # model prompt 
-    # a design of a *color* swimsuit with the shape of a *shape* shape inspired by *insp* 
-    # a design of a silver swimsuit inspired by sunflowers  
+    # TEXT TO IMAGE 
 
-
-
-
-    # model_id = "runwayml/stable-diffusion-v1-5"
+    model_id = "runwayml/stable-diffusion-v1-5"
     # # pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16)
-    # pipe = StableDiffusionPipeline.from_pretrained(model_id)
+    pipe = StableDiffusionPipeline.from_pretrained(model_id)
 
-    model_id = "stabilityai/stable-diffusion-2-1"
-    model_id = "stable_diffusion_onnx"
-    
+    # model_id = "stabilityai/stable-diffusion-2-1"
     # pipe = DiffusionPipeline.from_pretrained(model_id)
-    pipe = onnx.onnxPipeline()
+
+    # model_id = "stable_diffusion_onnx"    
+    # pipe = onnx.onnxPipeline()
 
     prompt = "a professional photograph of a design of a two-piece swimsuit inspired by " + text_despription[0]
     print(prompt)
-    image = pipe(prompt).images[0]  
-    
+
+    neg_prompt = "ugly, tiling, poorly drawn hands, poorly drawn feet, poorly drawn face, out of frame, mutation, mutated, extra limbs, extra legs, extra arms, disfigured, deformed, cross-eye, body out of frame, blurry, bad art, bad anatomy, blurred, text, watermark, grainy"
+    print(neg_prompt)
+
+    # image = onnx.onnxImage(width=256, height=256, prompt = prompt, negative_prompt=neg_prompt)
+
+
+    image = pipe(prompt, negative_prompt=neg_prompt).images[0]  
 
     # save input img, output img, prompt, model txt2img, model img2txt 
-
 
     new_img_path = get_new_file_name("created_images/") + ".png"
     image.save(new_img_path)
