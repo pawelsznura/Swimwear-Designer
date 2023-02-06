@@ -60,9 +60,16 @@ import img2text_models.vit_gpt2_image_captioning as vit_gpt2_image_captioning
 
 
 
-def main():
+def generate(img_path, model1, model2, prompt_part, negative_prompts):
+    """ img_path - inpiration image
+        model1 - img2txt
+        model2 - txt2img
+        prompt_part - the firt part of the prompt"""
+
     # SOURCE IMAGE PATH
-    img = "insp_img/apple.jpg"
+    # img = "insp_img/apple.jpg"
+    img = img_path
+
 
     # IMAGE TO TEXT
 
@@ -71,7 +78,8 @@ def main():
     # print(text_despription)
 
     text_despription  = vit_gpt2_image_captioning.predict(img)
-    img_cap_model = "vit_gpt2_image_captioning"
+    # img_cap_model = "vit_gpt2_image_captioning"
+    img_cap_model = model1
     print(img_cap_model)
     print(text_despription)
     # responses = get_text_classification_responses(img)
@@ -81,8 +89,9 @@ def main():
     # print(get_best_classification(responses))
 
     # TEXT TO IMAGE 
+    model_id = model2
 
-    model_id = "runwayml/stable-diffusion-v1-5"
+    # model_id = "runwayml/stable-diffusion-v1-5"
     # # pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16)
     pipe = StableDiffusionPipeline.from_pretrained(model_id)
 
@@ -92,10 +101,10 @@ def main():
     # model_id = "stable_diffusion_onnx"    
     # pipe = onnx.onnxPipeline()
 
-    prompt = "a professional photograph of a design of a two-piece swimsuit inspired by " + text_despription[0]
+    # prompt = "a professional photograph of a design of a two-piece swimsuit inspired by " + text_despription[0]
+    prompt = prompt_part + text_despription[0]
     print(prompt)
-
-    neg_prompt = "ugly, tiling, poorly drawn hands, poorly drawn feet, poorly drawn face, out of frame, mutation, mutated, extra limbs, extra legs, extra arms, disfigured, deformed, cross-eye, body out of frame, blurry, bad art, bad anatomy, blurred, text, watermark, grainy"
+    neg_prompt = negative_prompts
     print(neg_prompt)
 
     # image = onnx.onnxImage(width=256, height=256, prompt = prompt, negative_prompt=neg_prompt)
@@ -135,11 +144,18 @@ def get_new_file_name(dir_path):
     
 
     # TODO what if directory is empty? 
-    # not sure if the list is in correct order (possible error 10.png cos 1 < 9)
-    last = os.listdir(dir_path)[len(os.listdir(dir_path))-1]
-    print("last element " + last)
 
-    img_number = last[0].split(".")[0]
+
+    # FIXED not sure if the list is in correct order (possible error 10.png cos 1 < 9)
+    # last = os.listdir(dir_path)[len(os.listdir(dir_path))-1]
+    sorted_list = sorted(os.listdir(dir_path), key=lambda x: int(x.split(".")[0]))
+    last = sorted_list[-1]
+
+    # print(os.listdir(dir_path))
+    # print(sorted_list)
+    # print("last element " + last)
+
+    img_number = last.split(".")[0]
     # print("number = "+img_number)
 
     new_number = int(img_number) + 1
@@ -209,5 +225,5 @@ def get_best_classification(responses):
 
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

@@ -1,5 +1,5 @@
-input image: insp_img/apple.jpg
+input image: insp_img/umbrella.jpg
 output image: created_images/10.png
-prompt: a professional photograph of a design of a two-piece swimsuit inspired by a red apple sitting on top of a white surface
+prompt: a professional photograph of a design of a two-piece swimsuit inspired by a colorful umbrella is hanging from the side of a red umbrella
 model img2txt: vit_gpt2_image_captioning
-model txt2img: runwayml/stable-diffusion-v1-5        
+model txt2img: stabilityai/stable-diffusion-2-1        
