@@ -16,6 +16,7 @@ img_cap_model = "vit_gpt2_image_captioning"
 
 model_id = "runwayml/stable-diffusion-v1-5"
 # model_id = "stabilityai/stable-diffusion-2-1"
+# model_id = "stable_diffusion_onnx"
     
 
 

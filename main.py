@@ -37,7 +37,7 @@ facebook_regnet = "https://api-inference.huggingface.co/models/facebook/regnet-y
 nvidia_mit = "https://api-inference.huggingface.co/models/nvidia/mit-b0"
 
 #API key for models 
-headers = {"Authorization": f"Bearer %s" %config.api_img2txt}
+# headers = {"Authorization": f"Bearer %s" %config.api_img2txt}
 
 models = [microsoft_beit, microsoft_resnet, microsoft_swin,
         google_vit,
