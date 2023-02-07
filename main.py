@@ -66,6 +66,9 @@ def generate(img_path, model1, model2, prompt_part, negative_prompts):
         model2 - txt2img
         prompt_part - the firt part of the prompt"""
 
+
+    start_time = time.time()
+
     # SOURCE IMAGE PATH
     # img = "insp_img/apple.jpg"
     img = img_path
@@ -119,14 +122,22 @@ def generate(img_path, model1, model2, prompt_part, negative_prompts):
 
     new_txt_path = get_new_file_name("created_images_text/") + ".txt"
 
+    end_time = time.time()
+
+    total_time = end_time - start_time
+
+    total_time_minutes = total_time / 60
+
     image_details = '''\
 input image: {input_image}
 output image: {output_image}
 prompt: {prompt}
 model img2txt: {model_img2txt}
-model txt2img: {model_txt2img}\
+model txt2img: {model_txt2img}
+execution time in minutes: {total_minutes}\
         '''.format(input_image = img, output_image = new_img_path, 
-        prompt = prompt, model_img2txt = img_cap_model, model_txt2img = model_id )
+        prompt = prompt, model_img2txt = img_cap_model, model_txt2img = model_id,
+         total_minutes = total_time_minutes )
 
 
 
