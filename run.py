@@ -6,7 +6,10 @@ import os
 
 all_img = os.listdir("insp_img/")
 
-img = "insp_img/"+all_img[1]
+# print(all_img)
+
+# img = "insp_img/"+all_img[2]
+img = "insp_img/elephant.jpg"
 
 prompt_part = "female swimwear design inspired by "
 neg_prompt = "ugly, tiling, poorly drawn hands, poorly drawn feet, poorly drawn face, out of frame, mutation, mutated, extra limbs, extra legs, extra arms, disfigured, deformed, cross-eye, body out of frame, blurry, bad art, bad anatomy, blurred, text, watermark, grainy"
