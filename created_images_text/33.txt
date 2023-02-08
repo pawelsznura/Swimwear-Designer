@@ -1,0 +1,6 @@
+input image: insp_img/usa_flag.jpg
+output image: created_images/33.png
+prompt: female swimsuit design inspired by the flag of the united states of america is on a flag pole
+model img2txt: vit_gpt2_image_captioning
+model txt2img: runwayml/stable-diffusion-v1-5
+execution time in minutes: 5.345722627639771        

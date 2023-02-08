@@ -100,7 +100,7 @@ def generate(img_path, model1, model2, prompt_part, negative_prompts):
 
     # model_id = "stabilityai/stable-diffusion-2-1"
     pipe = DiffusionPipeline.from_pretrained(model_id)
-    pipe = pipe.to("cuda")
+    # pipe = pipe.to("cuda")
     
     # model_id = "stable_diffusion_onnx"    
     # pipe = onnx.onnxPipeline()

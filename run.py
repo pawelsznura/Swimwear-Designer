@@ -9,7 +9,7 @@ all_img = os.listdir("insp_img/")
 # print(all_img)
 
 # img = "insp_img/"+all_img[2]
-img = "insp_img/elephant.jpg"
+# img = "insp_img/elephant.jpg"
 
 prompt_part = "female swimsuit design inspired by "
 neg_prompt = "ugly, tiling, poorly drawn, out of frame, mutation, mutated, extra limbs, extra legs, extra arms, disfigured, deformed, cross-eye, body out of frame, blurry, bad art, bad anatomy, blurred, text, watermark, grainy"
@@ -22,8 +22,9 @@ model_id = "runwayml/stable-diffusion-v1-5"
 # model_id = "stable_diffusion_onnx"
     
 
+# run all img 
+for img in all_img:
+    main.generate("insp_img/"+img, img_cap_model, model_id, prompt_part, neg_prompt)
 
-
-main.generate(img, img_cap_model, model_id, prompt_part, neg_prompt)
-
+# main.generate(img, img_cap_model, model_id, prompt_part, neg_prompt)
 
