@@ -37,7 +37,7 @@ facebook_regnet = "https://api-inference.huggingface.co/models/facebook/regnet-y
 nvidia_mit = "https://api-inference.huggingface.co/models/nvidia/mit-b0"
 
 #API key for models 
-headers = {"Authorization": f"Bearer %s" %config.api_img2txt}
+# headers = {"Authorization": f"Bearer %s" %config.api_img2txt}
 
 models = [microsoft_beit, microsoft_resnet, microsoft_swin,
         google_vit,
@@ -96,11 +96,12 @@ def generate(img_path, model1, model2, prompt_part, negative_prompts):
 
     # model_id = "runwayml/stable-diffusion-v1-5"
     # # pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16)
-    pipe = StableDiffusionPipeline.from_pretrained(model_id)
+    # pipe = StableDiffusionPipeline.from_pretrained(model_id, guidance_scale=7.5, num_inference_steps=15)
 
     # model_id = "stabilityai/stable-diffusion-2-1"
-    # pipe = DiffusionPipeline.from_pretrained(model_id)
-
+    pipe = DiffusionPipeline.from_pretrained(model_id)
+    pipe = pipe.to("cuda")
+    
     # model_id = "stable_diffusion_onnx"    
     # pipe = onnx.onnxPipeline()
 

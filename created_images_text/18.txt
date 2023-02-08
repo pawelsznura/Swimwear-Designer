@@ -1,0 +1,5 @@
+input image: insp_img/elephant.jpg
+output image: created_images/18.png
+prompt: female swimwear design inspired by an elephant walking down a dirt road
+model img2txt: vit_gpt2_image_captioning
+model txt2img: stabilityai/stable-diffusion-2-1        
