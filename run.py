@@ -9,7 +9,7 @@ all_img = os.listdir("insp_img/")
 # print(all_img)
 
 # img = "insp_img/"+all_img[2]
-# img = "insp_img/elephant.jpg"
+img = "insp_img/elephant.jpg"
 
 # Prompt engineering 
 # how to keep everything in frame? 
@@ -19,14 +19,25 @@ fashion_list = ["concept", "fashion design", "elegant", "luxury",]
 
 designers_list = ["design by", "balenciaga", "laagam", "loewe", "aimeleondore", "Louis Vuitton"]
 
-front_prompt = ["A sketch of ", "A drawing of", "A photograph of", "good lighting", "ray tracing", "realistic" ]
+front_prompt = ["A sketch of a", "A drawing of a", "A photograph of a"]
 
-styles = ["Modernistic", "Abstract"]
+styles = ["Modernistic", "Abstract","realistic"]
+
+swimsuit = ["swimsuit","swimwear", "two-piece","one-piece"]
+
+gender = ["female", "male", "unisex"]
+
+prompt_part = front_prompt[0] + gender[0] + swimsuit[4] + swimsuit[0] + "inspired by "
+
+prompt_end = "highly detailed, 8 k, hyper realistic"
+
+# TODO function to generate prompts
 
 neg_prompt2 = "ugly, deformed, deformity, ugliness, blurry, disfigured, poorly drawn face, mutation, mutated, extra limbs, messy drawing, text, cropped head, cropped face"
 
 
-prompt_part = "female swimsuit design inspired by "
+# prompt_part = "female swimsuit design inspired by"
+# prompt_end = "highly detailed, 8 k, hyper realistic"
 neg_prompt = "ugly, tiling, poorly drawn, out of frame, mutation, mutated, extra limbs, extra legs, extra arms, disfigured, deformed, cross-eye, body out of frame, blurry, bad art, bad anatomy, blurred, text, watermark, grainy"
 
 
@@ -38,8 +49,8 @@ model_id = "runwayml/stable-diffusion-v1-5"
     
 
 # run all img 
-for img in all_img:
-    main.generate("insp_img/"+img, img_cap_model, model_id, prompt_part, neg_prompt)
+# for img in all_img:
+    # main.generate("insp_img/"+img, img_cap_model, model_id, prompt_part, prompt_end, neg_prompt)
 
-# main.generate(img, img_cap_model, model_id, prompt_part, neg_prompt)
+# main.generate(img, img_cap_model, model_id, prompt_part, prompt_end, neg_prompt)
 

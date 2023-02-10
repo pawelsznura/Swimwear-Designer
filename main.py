@@ -60,7 +60,7 @@ import img2text_models.vit_gpt2_image_captioning as vit_gpt2_image_captioning
 
 
 
-def generate(img_path, model1, model2, prompt_part, negative_prompts):
+def generate(img_path, model1, model2, prompt_part, prompt_end, negative_prompts):
     """ img_path - inpiration image
         model1 - img2txt
         model2 - txt2img
@@ -106,7 +106,7 @@ def generate(img_path, model1, model2, prompt_part, negative_prompts):
     # pipe = onnx.onnxPipeline()
 
     # prompt = "a professional photograph of a design of a two-piece swimsuit inspired by " + text_despription[0]
-    prompt = prompt_part + text_despription[0]
+    prompt = prompt_part + text_despription[0] + prompt_end
     print(prompt)
     neg_prompt = negative_prompts
     print(neg_prompt)
