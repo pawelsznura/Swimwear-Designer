@@ -58,9 +58,9 @@ model_id = "runwayml/stable-diffusion-v1-5"
 
 for front in front_prompt:
     for concept in fashion_list:
-        # for style in styles:
+        for style in styles:
            prompt_part = front +" "+ gender[0] +" "+ swimsuit[3] +" "+ swimsuit[0] + " inspired by " 
-        #    prompt_end = " " + concept +" "+ style
-           prompt_end = " " + concept 
-           main.generate(img, img_cap_model, model_id, prompt_part, prompt_end, neg_prompt)
+           prompt_end = ", " + concept +", "+ style
+        #    prompt_end = " " + concept 
+           main.generate(img, img_cap_model, model_id, prompt_part, prompt_end, neg_prompt2)
 
