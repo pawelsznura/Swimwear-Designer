@@ -19,7 +19,8 @@ fashion_list = ["concept", "fashion design", "elegant", "luxury",]
 
 designers_list = ["design by", "balenciaga", "laagam", "loewe", "aimeleondore", "Louis Vuitton"]
 
-front_prompt = ["A sketch of a", "A drawing of a", "A photograph of a"]
+# front_prompt = ["A sketch of a", "A drawing of a", "A photograph of a"]
+front_prompt = ["A photograph of a"]
 
 styles = ["Modernistic", "Abstract","realistic"]
 
@@ -27,11 +28,12 @@ swimsuit = ["swimsuit","swimwear", "two-piece","one-piece"]
 
 gender = ["female", "male", "unisex"]
 
-prompt_part = front_prompt[0] + gender[0] + swimsuit[3] + swimsuit[0] + "inspired by "
+prompt_part = front_prompt[0] +" "+ gender[0] +" "+ swimsuit[3] +" "+ swimsuit[0] + " inspired by "
 
-prompt_end = "highly detailed, 8 k, hyper realistic"
+prompt_end = " highly detailed, 8 k, hyper realistic"
 
 # TODO function to generate prompts
+#  front and back 
 
 neg_prompt2 = "ugly, deformed, deformity, ugliness, blurry, disfigured, poorly drawn face, mutation, mutated, extra limbs, messy drawing, text, cropped head, cropped face"
 
