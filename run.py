@@ -54,15 +54,14 @@ model_id = "runwayml/stable-diffusion-v1-5"
 # for img in all_img:
     # main.generate("insp_img/"+img, img_cap_model, model_id, prompt_part, prompt_end, neg_prompt)
 
-# main.generate(img, img_cap_model, model_id, prompt_part, prompt_end, neg_prompt)
+main.generate(img, img_cap_model, model_id, prompt_part, prompt_end, neg_prompt)
 
-# main.generate(img, img_cap_model, model_id, "", "", "")
 
-for front in front_prompt:
-    for concept in fashion_list:
-        for style in styles:
-           prompt_part = front +" "+ gender[0] +" "+ swimsuit[3] +" "+ swimsuit[0] + " inspired by " 
-           prompt_end = ", " + concept +", "+ style
-        #    prompt_end = " " + concept 
-           main.generate(img, img_cap_model, model_id, prompt_part, prompt_end, neg_prompt2)
+# for front in front_prompt:
+#     for concept in fashion_list:
+#         for style in styles:
+#            prompt_part = front +" "+ gender[0] +" "+ swimsuit[3] +" "+ swimsuit[0] + " inspired by " 
+#            prompt_end = ", " + concept +", "+ style
+#         #    prompt_end = " " + concept 
+#            main.generate(img, img_cap_model, model_id, prompt_part, prompt_end, neg_prompt2)
 
