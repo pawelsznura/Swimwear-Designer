@@ -1,0 +1,6 @@
+input image: insp_img/elephant.jpg
+output image: created_images/79.png
+prompt: Image divided in half, showing in full frame front and back side of a A photograph of a female one-piece swimsuit inspired by an elephant walking down a dirt road highly detailed, 8 k, hyper realistic
+model img2txt: vit_gpt2_image_captioning
+model txt2img: runwayml/stable-diffusion-v1-5
+execution time in minutes: 6.2977574626604715        

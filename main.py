@@ -67,15 +67,15 @@ def generate(img_path, model1, model2, prompt_part, prompt_end, negative_prompts
 
     # model_id = "runwayml/stable-diffusion-v1-5"
     # # pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16)
-    # pipe = StableDiffusionPipeline.from_pretrained(model_id, guidance_scale=7.5, num_inference_steps=15)
+    pipe = StableDiffusionPipeline.from_pretrained(model_id)
 
     # model_id = "stabilityai/stable-diffusion-2-1"
-    pipe = DiffusionPipeline.from_pretrained(model_id)
+    # pipe = DiffusionPipeline.from_pretrained(model_id)
     # could be used if a cuda supported GPU is available 
     # pipe = pipe.to("cuda")
 
-
-    image = pipe(prompt, negative_prompt=neg_prompt).images[0]  
+    # leave the number of images generated at 1, would need to rewrite code to save more than one img 
+    image = pipe(prompt, negative_prompt=neg_prompt, guidance_scale=7.5, num_inference_steps=50, num_images_per_prompt=1).images[0]  
 
     # save input img, output img, prompt, model txt2img, model img2txt 
 
