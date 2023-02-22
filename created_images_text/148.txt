@@ -1,0 +1,6 @@
+input image: insp_img/brazil_waterfall.jpg
+output image: created_images/148.png
+prompt: A drawing of a female one-piece swimsuit inspired by a train crossing a bridge over a lush green hillside, fashion design, Modern
+model img2txt: vit_gpt2_image_captioning
+model txt2img: runwayml/stable-diffusion-v1-5
+execution time in minutes: 5.94602814912796        

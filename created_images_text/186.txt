@@ -1,0 +1,6 @@
+input image: insp_img/africa_view.jpg
+output image: created_images/186.png
+prompt: A drawing of a female one-piece swimsuit inspired by a sunset in the middle of a grassy field, elegant, Modern
+model img2txt: vit_gpt2_image_captioning
+model txt2img: runwayml/stable-diffusion-v1-5
+execution time in minutes: 6.060249499479929        

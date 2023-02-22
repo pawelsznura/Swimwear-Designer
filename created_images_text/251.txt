@@ -1,0 +1,6 @@
+input image: insp_img/jamaica.jpg
+output image: created_images/251.png
+prompt: A sketch of a female one-piece swimsuit inspired by a man standing on a beach holding a kite, fashion design, Abstract
+model img2txt: vit_gpt2_image_captioning
+model txt2img: runwayml/stable-diffusion-v1-5
+execution time in minutes: 6.04406334956487        

@@ -1,0 +1,6 @@
+input image: insp_img/africa_tribe.jpg
+output image: created_images/122.png
+prompt: A photograph of a female one-piece swimsuit inspired by two men in costumes are dancing on a beach, luxury, Modern
+model img2txt: vit_gpt2_image_captioning
+model txt2img: runwayml/stable-diffusion-v1-5
+execution time in minutes: 5.91108820438385        

@@ -1,0 +1,6 @@
+input image: insp_img/zebra.jpg
+output image: created_images/200.png
+prompt: A sketch of a female one-piece swimsuit inspired by a herd of zebra standing on top of a dry grass field, luxury, Modern
+model img2txt: vit_gpt2_image_captioning
+model txt2img: runwayml/stable-diffusion-v1-5
+execution time in minutes: 6.046007343133291        

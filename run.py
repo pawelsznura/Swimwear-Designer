@@ -59,6 +59,7 @@ model_id = "runwayml/stable-diffusion-v1-5"
 # main.generate(img, img_cap_model, model_id, prompt_part, prompt_end, neg_prompt)
 
 for img in all_img:
+    img = "insp_img/"+img
     for front in front_prompt:
         for concept in fashion_list:
             for style in styles:

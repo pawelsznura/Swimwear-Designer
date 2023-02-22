@@ -1,0 +1,6 @@
+input image: insp_img/sea_waves.jpg
+output image: created_images/241.png
+prompt: A drawing of a female one-piece swimsuit inspired by a large body of water with a blue ocean background, elegant, Abstract
+model img2txt: vit_gpt2_image_captioning
+model txt2img: runwayml/stable-diffusion-v1-5
+execution time in minutes: 6.044855495293935        
