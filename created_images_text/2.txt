@@ -1,4 +1,4 @@
-input image: apple.jpg
+input image: insp_img/apple.jpg
 output image: 2.png
 prompt:
 model img2txt: vit_gpt2_image_captioning

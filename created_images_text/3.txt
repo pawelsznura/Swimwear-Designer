@@ -1,4 +1,4 @@
-input image: vase.jpg
+input image: insp_img/vase.jpg
 output image: 3.png
 prompt:
 model img2txt: vit_gpt2_image_captioning
