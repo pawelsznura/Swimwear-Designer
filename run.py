@@ -4,7 +4,9 @@ import main
 import os
 
 
-all_img = os.listdir("insp_img/")
+# all_img = os.listdir("insp_img/")
+
+all_img = ["china.jpg", "coffee_french.jpg", "horse.jpg", "india_flag.jpg", "india_traditional.jpg", "japan_fuji.jpg", "rio_jesus.jpg", "sunset.jpg"]
 
 # print(all_img)
 
