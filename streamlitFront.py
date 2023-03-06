@@ -1,8 +1,5 @@
 import streamlit as st
-from PIL import Image
-from io import BytesIO
 import os
-import base64
 import pandas as pd
 
 
