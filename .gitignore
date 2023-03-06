@@ -2,3 +2,5 @@ config.py
 __pycache__/
 Stable_Diffusion/sd_env
 Stable_Diffusion/stable_diffusion_onnx
+
+.vscode/
