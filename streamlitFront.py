@@ -26,7 +26,7 @@ def display_img_data(selected_number):
     st.text(text_display)
 
     rating = img_rat.loc[selected_number-1, "score"]
-    st.write(f"Rating: {rating}")
+    st.write(f"Score: {rating}")
 
     st.write("inspiration image")
 
@@ -36,8 +36,6 @@ def display_img_data(selected_number):
         st.write("no image to show")
     else:
         st.image(insp_img_path, width=250)
-
-
 
 
 # MAIN
@@ -57,9 +55,6 @@ num_files = len(files)
 # columns: image, score
 img_rat = pd.read_csv("img_evaluation.csv")
 
-# print(img_rat["score"].to_string())
-
-
 
 # select img  rating 
 rating_option = st.selectbox(
@@ -73,13 +68,13 @@ else:
     img_rat_filtered = img_rat[img_rat["score"] == int(rating_option)]
 
     if img_rat_filtered.empty:
-        st.write("No images with rating " + rating_option)
+        st.write("No images with score " + rating_option)
     else:
         # Get the list of image numbers with the selected rating
         img_numbers = img_rat_filtered["image"].tolist()
 
         # Display the list of image numbers with the selected rating
-        selected_number = st.selectbox('Select an image number', img_numbers)
+        selected_number = st.selectbox('Select an image from '+str(len(img_numbers)) +' avaible', img_numbers)
 
 col1, col2 = st.columns(2)
 
@@ -89,5 +84,3 @@ with col1:
 
 with col2:
     display_img_data(selected_number)
-
-    
