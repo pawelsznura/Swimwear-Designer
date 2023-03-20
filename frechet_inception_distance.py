@@ -49,12 +49,17 @@ def get_file_paths(directory):
     # print(file_paths)
     return file_paths
 
-gen_img_paths = get_file_paths("created_images")
+gen_img_paths = get_file_paths("created_images")[100:]
 real_img_paths = get_file_paths("imagenet")
 # print(real_img_paths[-10:])
-# print(gen_img_paths[-100:])
+print(gen_img_paths[:1], gen_img_paths[-1:])
+number_of_img = len(gen_img_paths)
+print("number of images: "+str(number_of_img))
+# print("number of real images: "+str(len(real_img_paths[-number_of_img:])))
 gen_tensor = transform_to_tensor(gen_img_paths)
-real_tensor = transform_to_tensor(real_img_paths)
+
+# use the element from end of the list
+real_tensor = transform_to_tensor(real_img_paths[-number_of_img:])
 # print("\nREAL: \n\n")
 # print(real_tensor[:1])
 
