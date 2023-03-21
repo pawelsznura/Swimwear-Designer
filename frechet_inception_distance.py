@@ -49,7 +49,7 @@ def get_file_paths(directory):
     # print(file_paths)
     return file_paths
 
-gen_img_paths = get_file_paths("created_images")[100:]
+gen_img_paths = get_file_paths("created_images")
 real_img_paths = get_file_paths("imagenet")
 # print(real_img_paths[-10:])
 print(gen_img_paths[:1], gen_img_paths[-1:])

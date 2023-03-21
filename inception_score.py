@@ -4,6 +4,8 @@ from torchvision.transforms import ToTensor
 from PIL import Image
 import os 
 
+# needs to be improved, looks like something is wrong 
+# when running it needs to much memory 
 
 def inception_score(img_paths):
     # Load pre-trained Inception V3 model
@@ -41,5 +43,5 @@ def get_file_paths(directory):
     return file_paths
 
 img_paths = get_file_paths("created_images")
-print(img_paths[-10:])
-print(inception_score(img_paths[-10:]))
+# print(img_paths[-10:])
+print(inception_score(img_paths[-200:]))

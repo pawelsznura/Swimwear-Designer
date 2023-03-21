@@ -37,7 +37,7 @@ def display_img_data(selected_number):
 
 # MAIN
 
-st.set_page_config(layout="wide", page_title="Image Galery")
+st.set_page_config(layout="wide", page_title="Image Gallery")
 
 st.write("## Image Gallery")
 
