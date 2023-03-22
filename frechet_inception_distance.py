@@ -19,7 +19,6 @@ def frechet_inception_distance(gen, real):
 
 def transform_to_tensor(img_paths):
     """takes as input array of image paths, returns array of tensor"""
-    # transform = ToTensor()
 
     transform = transforms.Compose([
     transforms.PILToTensor()
@@ -44,27 +43,27 @@ def get_file_paths(directory):
 
     if directory == "created_images":
         # custom sorting function to sort the list based on the numerical value of the file names
+        # it with helps selecting the most recent images 
         file_paths.sort(key=lambda x: int(x.split('/')[-1].split('.')[0]))
     
     # print(file_paths)
     return file_paths
 
+# SCRIPT STARTS HERE 
+
 gen_img_paths = get_file_paths("created_images")
 real_img_paths = get_file_paths("imagenet")
 # print(real_img_paths[-10:])
 print(gen_img_paths[:1], gen_img_paths[-1:])
+
 number_of_img = len(gen_img_paths)
 print("number of images: "+str(number_of_img))
 # print("number of real images: "+str(len(real_img_paths[-number_of_img:])))
 gen_tensor = transform_to_tensor(gen_img_paths)
 
-# use the element from end of the list
+# use the elements from end of the list
 real_tensor = transform_to_tensor(real_img_paths[-number_of_img:])
-# print("\nREAL: \n\n")
+# print("\nREAL: \n")
 # print(real_tensor[:1])
 
 print(frechet_inception_distance(gen_tensor, real_tensor))
-
-
-
-
