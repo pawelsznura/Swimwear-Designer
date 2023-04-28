@@ -1,6 +1,6 @@
 import json
 import numpy as np
-import config
+# import config
 import requests
 import time
 import os

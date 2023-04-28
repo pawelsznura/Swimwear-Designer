@@ -36,7 +36,8 @@ prompt_part = front_prompt[0] +" "+ gender[0] +" "+ swimsuit[3] +" "+ swimsuit[0
 prompt_end = " highly-detailed, 8k, hyper-realistic, Worksafe, Full body"
 
 # TODO function to generate prompts
-#  front and back 
+
+#  front and back - did not work 
 
 neg_prompt2 = "ugly, deformed, deformity, ugliness, blurry, disfigured, poorly drawn face, mutation, mutated, extra limbs, messy drawing, text, cropped head, cropped face"
 
@@ -49,24 +50,24 @@ neg_prompt = "ugly, tiling, poorly drawn, out of frame, mutation, mutated, extra
 
 img_cap_model = "vit_gpt2_image_captioning"
 
-model_id = "runwayml/stable-diffusion-v1-5"
+# model_id = "runwayml/stable-diffusion-v1-5"
 # model_id = "stabilityai/stable-diffusion-2-1"
-# model_id = "stable_diffusion_onnx"
+model_id = "stable_diffusion_onnx"
     
 
 # run all img 
 # for img in all_img:
     # main.generate("insp_img/"+img, img_cap_model, model_id, prompt_part, prompt_end, neg_prompt)
 
-# main.generate(img, img_cap_model, model_id, prompt_part, prompt_end, neg_prompt)
+main.generate(img, img_cap_model, model_id, prompt_part, prompt_end, neg_prompt)
 
-for img in all_img:
-    img = "insp_img/"+img
-    for front in front_prompt:
-        for concept in fashion_list:
-            for style in styles:
-                prompt_part = front +" "+ gender[0] +" "+ swimsuit[3] +" "+ swimsuit[0] + " inspired by " 
-                prompt_end = ", " + concept +", "+ style
-                #    prompt_end = " " + concept 
-                main.generate(img, img_cap_model, model_id, prompt_part, prompt_end, neg_prompt2)
+# for img in all_img:
+#     img = "insp_img/"+img
+#     for front in front_prompt:
+#         for concept in fashion_list:
+#             for style in styles:
+#                 prompt_part = front +" "+ gender[0] +" "+ swimsuit[3] +" "+ swimsuit[0] + " inspired by " 
+#                 prompt_end = ", " + concept +", "+ style
+#                 #    prompt_end = " " + concept 
+#                 main.generate(img, img_cap_model, model_id, prompt_part, prompt_end, neg_prompt2)
 

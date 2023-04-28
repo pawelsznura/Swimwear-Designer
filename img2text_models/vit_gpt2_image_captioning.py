@@ -37,6 +37,6 @@ def predict(image_path):
       return preds
 
 
-    caption = predict_step([image_path]) # ['a woman in a hospital bed with a woman in a hospital bed']
+    caption = predict_step([image_path]) 
 
     return(caption)
